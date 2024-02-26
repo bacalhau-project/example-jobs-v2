@@ -1,0 +1,18 @@
+name: Object Detection with YOLOv5
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: ultralytics/yolov5:v6.2
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - find /inputs -type f -exec cp {} /outputs/yolov5s.pt \; ; python detect.py --weights /outputs/yolov5s.pt --source $(pwd)/data/images --project /outputs
+    - Source:
+        Type: url
+        Params:
+          Path: https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt

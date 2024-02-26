@@ -1,0 +1,11 @@
+name: Stable Diffusion CPU Inference
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "ghcr.io/bacalhau-project/examples/stable-diffusion-cpu:0.0.1" 
+        Parameters:
+          - "python demo.py --prompt "First Humans On Mars" --output ../outputs/mars.png"

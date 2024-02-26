@@ -1,0 +1,17 @@
+name: Building and Running your Custom R Containers
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "ghcr.io/bacalhau-project/examples/r-prophet:0.0.2" 
+        Parameters:
+          - Rscript Saturating-Forecasts.R "/example_wp_log_R.csv" "/outputs/output0.pdf" "/outputs/output1.pdf"
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt"
+      - Target: "/example_wp_log_R.csv"

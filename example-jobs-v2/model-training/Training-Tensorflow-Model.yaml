@@ -1,0 +1,25 @@
+name: Stable Diffusion Dreambooth Finetuning
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        WorkingDirectory: "/inputs"
+        Image: "tensorflow/tensorflow" 
+        Parameters:
+          - python train.py
+    InputSources:
+      - Target: /inputs
+      - Source:
+        Type: url
+        Params:
+          Path: https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+
+      - Source:
+        Type: url
+        Params:
+          Path: https://gist.githubusercontent.com/js-ts/e7d32c7d19ffde7811c683d4fcb1a219/raw/ff44ac5b157d231f464f4d43ce0e05bccb4c1d7b/train.py
+    Resources:
+      GPU: "1"

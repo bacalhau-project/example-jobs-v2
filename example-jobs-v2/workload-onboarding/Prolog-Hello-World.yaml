@@ -1,0 +1,17 @@
+name: Running a Prolog Script
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "swipl" 
+        Parameters:
+          - "swipl -q -s helloworld.pl -g hello_world"
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmYq9ipYf3vsj7iLv5C67BXZcpLHxZbvFAJbtj7aKN5qii"
+      - Target: "/helloworld.pl"

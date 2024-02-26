@@ -1,0 +1,20 @@
+name: Simple Image Processing
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: dpokidov/imagemagick:7.1.0-47-ubuntu
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - magick mogrify -resize 100x100 -quality 100 -path /outputs '/input_images/*.jpg'
+    InputSources:
+    - Source:
+        Type: "ipfs"
+        Params:
+          CID: "QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72 "
+    - Target: "/input_images"

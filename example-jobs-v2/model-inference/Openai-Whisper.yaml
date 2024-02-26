@@ -1,0 +1,13 @@
+name: Speech Recognition using Whisper
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "jsacex/whisper" 
+        Parameters:
+          - python openai-whisper.py -p inputs/Apollo_11_moonwalk_montage_720p.mp4 -o outputs
+    Resources:
+      GPU: "1"

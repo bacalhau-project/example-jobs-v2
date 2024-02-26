@@ -1,0 +1,20 @@
+name: Convert CSV To Parquet Or Avro
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: jsacex/csv-to-arrow-or-parquet
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - python3 src/converter.py ../inputs/transactions.csv  ../outputs/transactions.parquet parquet
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmTAQMGiSv9xocaB4PUCT5nSBHrf9HZrYj21BAZ5nMTY2W"
+      - Target: "/inputs"

@@ -1,0 +1,21 @@
+name: Running Pandas
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        WorkingDirectory: "/files"
+        Image: amancevice/pandas
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - python read_csv.py
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmfKJT13h5k1b23ja3ZCVg5nFL9oKz2bVXc8oXgtwiwhjz"
+      - Target: "/files"

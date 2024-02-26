@@ -1,0 +1,17 @@
+name: Running a Simple R Script
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "r-base" 
+        Parameters:
+          - "Rscript hello.R"
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmQRVx3gXVLaRXywgwo8GCTQ63fHqWV88FiwEqCidmUGhk"
+      - Target: "/hello.R"

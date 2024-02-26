@@ -1,0 +1,21 @@
+name: DuckDB Parquet Query
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        WorkingDirectory: "/inputs"
+        Image: davidgasquez/duckdb:latest
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - duckdb -s "select count(*) from '0_yellow_taxi_trips.parquet'"
+    InputSources:
+    - Source:
+        Type: "ipfs"
+        Params:
+          CID: "bafybeiejgmdpwlfgo3dzfxfv3cn55qgnxmghyv7vcarqe3onmtzczohwaq "
+    - Target: "/inputs"

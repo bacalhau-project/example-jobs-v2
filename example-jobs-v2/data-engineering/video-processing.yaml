@@ -1,0 +1,19 @@
+name: Video Processing
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: linuxserver/ffmpeg
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - find /inputs -iname "*.mp4" -printf "%f\n" | xargs -I{} ffmpeg -y -i /inputs/{} -vf "scale=-1:72,setsar=1:1" /outputs/scaled_{}
+    InputSources:
+    - Source:
+        Type: "ipfs"
+        Params:
+          CID: "Qmd9CBYpdgCLuCKRtKRRggu24H72ZUrGax5A9EYvrbC72j"

@@ -1,0 +1,24 @@
+name: EasyOCR
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "jsacex/easyocr" 
+        Parameters:
+          - easyocr -l ch_sim  en -f ./inputs/chinese.jpg --detail=1 --gpu=True
+        - Source:
+    InputSources:
+    - Source:
+      Type: url
+        Params:
+          Path: https://raw.githubusercontent.com/JaidedAI/EasyOCR/ae773d693c3f355aac2e58f0d8142c600172f016/examples/chinese.jpg
+    - Source:
+      Type: "ipfs"
+      Params:
+        CID: "bafybeibvcllzpfviggluobcfassm3vy4x2a4yanfxtmn4ir7olyzfrgq64"
+      - Target: "/root/.EasyOCR/model/zh_sim_g2.pth"
+    Resources:
+      GPU: "1"

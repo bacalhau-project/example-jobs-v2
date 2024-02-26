@@ -1,0 +1,11 @@
+name: Generate Synthetic Data using Sparkov Data Generation
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    engine:
+      type: docker
+      params:
+        Image: jsacex/sparkov-data-generation
+        Parameters:
+          - python3 datagen.py -n 1000 -o ../outputs "01-01-2022" "10-01-2022"

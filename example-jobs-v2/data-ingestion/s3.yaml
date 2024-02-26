@@ -1,0 +1,22 @@
+Name: Running a Job over S3 data
+Type: batch
+Count: 1
+Tasks:
+  - Name: main
+    Engine:
+      Type: docker
+      Params:
+        Image: "jsacex/gdal-s3"
+        Entrypoint:
+          - sh
+        Parameters:
+          - -c
+          - cp -r /inputs/* /outputs/
+    InputSources:
+      - Target: "/inputs/"
+        Source:
+          Type: "s3"
+          Params:
+            Bucket: "noaa-goes16"
+            Key: "ABI-L1b-RadC/2000/001/12/OR_ABI-L1b-RadC-M3C01*"
+            Region: "us-east-1"

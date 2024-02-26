@@ -1,0 +1,19 @@
+name: Oceanography - Data Conversion
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: ghcr.io/bacalhau-project/examples/socat:0.0.11
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - python main.py
+    InputSources:
+    - Source:
+        Type: "ipfs"
+        Params:
+          CID: "bafybeidunikexxu5qtuwc7eosjpuw6a75lxo7j5ezf3zurv52vbrmqwf6y  "

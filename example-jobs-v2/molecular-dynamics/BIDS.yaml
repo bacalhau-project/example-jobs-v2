@@ -1,0 +1,17 @@
+name: Running BIDS Apps on Bacalhau
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "nipreps/mriqc:latest" 
+        Parameters:
+          - "mriqc ../data/ds005 ../outputs participant --participant_label 01 02 03"
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmaNyzSpJCt1gMCQLd3QugihY6HzdYmA8QMEa45LDBbVPz"
+      - Target: "/data"

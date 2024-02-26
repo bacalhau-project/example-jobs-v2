@@ -1,0 +1,15 @@
+name: Copy Data from a URL to a Public Storage
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "ghcr.io/bacalhau-project/examples/upload:v1" 
+        - Source:
+    InputSources:
+    - Source:
+      Type: url
+        Params:
+          Path: https://raw.githubusercontent.com/filecoin-project/bacalhau/main/README.md

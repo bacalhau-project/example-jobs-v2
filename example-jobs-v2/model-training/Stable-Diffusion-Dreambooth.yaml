@@ -1,0 +1,19 @@
+name: Stable Diffusion Dreambooth Finetuning
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "jsacex/dreambooth:full" 
+        Parameters:
+          - bash finetune.sh /inputs /outputs "a photo of sbf man" "a photo of man" 3000 "/man" "/model"
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmRKnvqvpFzLjEoeeNNGHtc7H8fCn9TvNWHFnbBHkK8Mhy"
+        - Target: "/data"
+    Resources:
+      GPU: "1"

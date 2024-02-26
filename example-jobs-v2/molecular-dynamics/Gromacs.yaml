@@ -1,0 +1,20 @@
+name: Gromacs
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: gromacs/gromacs
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - echo 15 | gmx pdb2gmx -f input/1AKI.pdb -o outputs/1AKI_processed.gro -water spc
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmeeEB1YMrG6K8z43VdsdoYmQV46gAPQCHotZs9pwusCm9"
+      - Target: "/input"

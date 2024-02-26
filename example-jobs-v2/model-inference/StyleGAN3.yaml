@@ -1,0 +1,13 @@
+name: StyleGAN3
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "jsacex/stylegan3" 
+        Parameters:
+          - python gen_images.py --outdir=../outputs --trunc=1 --seeds=2 --network=stylegan3-r-afhqv2-512x512.pkl
+    Resources:
+      GPU: "1"

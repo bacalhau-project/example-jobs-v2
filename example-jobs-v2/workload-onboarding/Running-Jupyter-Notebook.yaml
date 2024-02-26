@@ -1,0 +1,20 @@
+name: Running Jupyter Notebooks
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: amancevice/pandas
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - python read_csv.py
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjY3fZ"
+      - Target: "/data"

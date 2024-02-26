@@ -1,0 +1,24 @@
+name: Stable Diffusion Dreambooth Finetuning
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: "pytorch/pytorch" 
+        Parameters:
+          - python ../inputs/main.py --save-model
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "QmdeQjz1HQQdT9wT2NHX86Le9X6X6ySGxp8dfRUKPtgziw"
+        InputSources:
+        - Target: /data
+      Source:
+        Type: url
+        Params:
+          Path: https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py
+    Resources:
+      GPU: "1"

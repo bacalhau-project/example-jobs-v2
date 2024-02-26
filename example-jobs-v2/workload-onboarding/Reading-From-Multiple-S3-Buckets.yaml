@@ -1,0 +1,25 @@
+Name: Reading Data from Multiple S3 Buckets
+Type: batch
+Count: 1
+Tasks:
+  - Name: main
+    Engine:
+      Type: docker
+      Params:
+        Image: "jsacex/gdal-s3"
+    InputSources:
+      - Target: "/bdc-sentinel-2/"
+        Source:
+          Type: "s3"
+          Params:
+            Bucket: "bdc-sentinel-2"
+            Key: "s2-16d/v1/075/086/2018/02/18/*"
+            Region: "us-west-2"
+    InputSources:
+      - Target: "/sentinel-cogs/"
+        Source:
+          Type: "s3"
+          Params:
+            Bucket: "sentinel-cogs"
+            Key: "sentinel-s2-l2a-cogs/28/M/CV/2022/6/S2B_28MCV_20220620_0_L2A/*"
+            Region: "us-west-2"            

@@ -1,0 +1,19 @@
+name: Molecular Simulation with OpenMM
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: ghcr.io/bacalhau-project/examples/openmm:0.3
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - python run_openmm_simulation.py
+    InputSources:
+      - Source:
+          Type: "ipfs"
+          Params:
+            CID: "bafybeig63whfqyuvwqqrp5456fl4anceju24ttyycexef3k5eurg5uvrq4"

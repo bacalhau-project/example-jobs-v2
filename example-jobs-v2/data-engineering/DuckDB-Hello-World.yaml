@@ -1,0 +1,14 @@
+name: DuckDB Hello World
+type: batch
+count: 1
+tasks:
+  - name: My main task
+    Engine:
+      type: docker
+      params:
+        Image: davidgasquez/datadex:v0.2.0
+        Entrypoint:
+          - /bin/bash
+        Parameters:
+          - -c
+          - duckdb -s "select 1"
