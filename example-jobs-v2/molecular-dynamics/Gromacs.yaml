@@ -13,8 +13,10 @@ tasks:
           - -c
           - echo 15 | gmx pdb2gmx -f input/1AKI.pdb -o outputs/1AKI_processed.gro -water spc
     InputSources:
-      - Source:
-          Type: "ipfs"
-          Params:
-            CID: "QmeeEB1YMrG6K8z43VdsdoYmQV46gAPQCHotZs9pwusCm9"
       - Target: "/input"
+        Source:
+          Type: "s3"
+          Params:
+            Bucket: "bacalhau-gromacs"
+            Key: "*"
+            Region: "us-east-1"
