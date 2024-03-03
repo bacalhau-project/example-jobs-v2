@@ -17,8 +17,8 @@ tasks:
         InputSources:
         - Target: /data
       Source:
-        Type: url
+        Type: urlDownload
         Params:
-          Path: https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py
+          URL: https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py
     Resources:
       GPU: "1"

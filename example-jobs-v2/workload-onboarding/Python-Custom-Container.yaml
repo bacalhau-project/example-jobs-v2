@@ -6,6 +6,9 @@ tasks:
     engine:
       type: docker
       params:
-        Image: jsacex/python-similar-movies
+        Image: jsace/python-similar-movies:latest
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c  
           - python similar-movies.py

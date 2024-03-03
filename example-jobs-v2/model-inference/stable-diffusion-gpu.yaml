@@ -10,4 +10,4 @@ tasks:
         Parameters:
           - python main.py --o ./outputs --p "cod swimming through data"
     Resources:
-      GPU: "1"
+      GPU: 1

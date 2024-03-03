@@ -7,18 +7,23 @@ tasks:
       type: docker
       params:
         Image: "jsacex/easyocr" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c
           - easyocr -l ch_sim  en -f ./inputs/chinese.jpg --detail=1 --gpu=True
-        - Source:
     InputSources:
-    - Source:
-      Type: url
+    - Target: "/inputs/chinese.jpg"
+      Source:
+      Type: "urlDownload"
         Params:
-          Path: https://raw.githubusercontent.com/JaidedAI/EasyOCR/ae773d693c3f355aac2e58f0d8142c600172f016/examples/chinese.jpg
-    - Source:
-      Type: "ipfs"
-      Params:
-        CID: "bafybeibvcllzpfviggluobcfassm3vy4x2a4yanfxtmn4ir7olyzfrgq64"
-      - Target: "/root/.EasyOCR/model/zh_sim_g2.pth"
+          URL: "https://raw.githubusercontent.com/JaidedAI/EasyOCR/ae773d693c3f355aac2e58f0d8142c600172f016/examples/chinese.jpg"
+    - Target: "/root/.EasyOCR/model/zh_sim_g2.pth"
+      Source:
+        Type: "s3"
+        Params:
+          Bucket: "landsat-image-processing"
+          Key: "*"
+          Region: "us-east-1"
     Resources:
       GPU: "1"

@@ -6,8 +6,11 @@ tasks:
     Engine:
       type: docker
       params:
-        Image: "jsacex/whisper" 
+        Image: jsacex/whisper:latest
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c   
           - python openai-whisper.py -p inputs/Apollo_11_moonwalk_montage_720p.mp4 -o outputs
     Resources:
       GPU: "1"

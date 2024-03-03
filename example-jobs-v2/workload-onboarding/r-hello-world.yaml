@@ -6,12 +6,16 @@ tasks:
     Engine:
       type: docker
       params:
-        Image: "r-base" 
+        Image: r-base:latest
+        Entrypoint:
+          - /bin/bash
         Parameters:
-          - "Rscript hello.R"
+          - -c        
+          - Rscript /hello.R
     InputSources:
-      - Source:
-          Type: "ipfs"
+      - Target: "/"
+        Source:
+          Type: urlDownload
           Params:
-            CID: "QmQRVx3gXVLaRXywgwo8GCTQ63fHqWV88FiwEqCidmUGhk"
-      - Target: "/hello.R"
+            URL: https://raw.githubusercontent.com/bacalhau-project/examples/scripts/scripts/hello.R
+            Path: /hello.R

@@ -14,8 +14,10 @@ tasks:
           - -c
           - duckdb -s "select count(*) from '0_yellow_taxi_trips.parquet'"
     InputSources:
-    - Source:
-        Type: "ipfs"
-        Params:
-          CID: "bafybeiejgmdpwlfgo3dzfxfv3cn55qgnxmghyv7vcarqe3onmtzczohwaq "
     - Target: "/inputs"
+      Source:
+        Type: "s3"
+        Params:
+          Bucket: "bacalhau-duckdb"
+          Key: "*"
+          Region: "us-east-1"

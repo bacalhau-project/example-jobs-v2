@@ -13,7 +13,10 @@ tasks:
           - -c
           - find /inputs -iname "*.mp4" -printf "%f\n" | xargs -I{} ffmpeg -y -i /inputs/{} -vf "scale=-1:72,setsar=1:1" /outputs/scaled_{}
     InputSources:
-    - Source:
-        Type: "ipfs"
+    - Target: "/inputs"
+      Source:
+        Type: "s3"
         Params:
-          CID: "Qmd9CBYpdgCLuCKRtKRRggu24H72ZUrGax5A9EYvrbC72j"
+          Bucket: "bacalhau-video-processing"
+          Key: "*"
+          Region: "us-east-1"

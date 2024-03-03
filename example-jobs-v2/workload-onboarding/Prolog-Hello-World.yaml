@@ -7,11 +7,15 @@ tasks:
       type: docker
       params:
         Image: "swipl" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
-          - "swipl -q -s helloworld.pl -g hello_world"
+          - -c     
+          - swipl -q -s helloworld.pl -g hello_world
     InputSources:
-      - Source:
-          Type: "ipfs"
-          Params:
-            CID: "QmYq9ipYf3vsj7iLv5C67BXZcpLHxZbvFAJbtj7aKN5qii"
       - Target: "/helloworld.pl"
+        Source:
+          Type: urlDownload
+          Params:
+            URL: https://raw.githubusercontent.com/bacalhau-project/examples/main/scripts/helloworld.pl
+            Path: /helloworld.pl

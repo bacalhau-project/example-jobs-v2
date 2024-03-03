@@ -6,7 +6,7 @@ tasks:
     Engine:
       type: docker
       params:
-        Image: nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04
+        Image: nvidia/cuda:12.2.2-devel-ubuntu22.04
         Entrypoint:
           - /bin/bash
         Parameters:
@@ -15,6 +15,6 @@ tasks:
     InputSources:
     - Target: /inputs
       Source:
-        Type: url
+        Type: urlDownload
         Params:
-          Path: https://raw.githubusercontent.com/tristanpenman/cuda-examples/master/02-cuda-hello-world-faster.cu
+          URL: https://raw.githubusercontent.com/tristanpenman/cuda-examples/master/02-cuda-hello-world-faster.cu

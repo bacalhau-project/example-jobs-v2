@@ -1,4 +1,4 @@
-name: Stable Diffusion Dreambooth Finetuning
+name: Training ML model using tensorflow
 type: batch
 count: 1
 tasks:
@@ -8,18 +8,20 @@ tasks:
       params:
         WorkingDirectory: "/inputs"
         Image: "tensorflow/tensorflow" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c
           - python train.py
     InputSources:
       - Target: /inputs
       - Source:
-        Type: url
+        Type: urlDownload
         Params:
-          Path: https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
-
+          URL: https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
       - Source:
-        Type: url
+        Type: urlDownload
         Params:
-          Path: https://gist.githubusercontent.com/js-ts/e7d32c7d19ffde7811c683d4fcb1a219/raw/ff44ac5b157d231f464f4d43ce0e05bccb4c1d7b/train.py
+          URL: https://gist.githubusercontent.com/js-ts/e7d32c7d19ffde7811c683d4fcb1a219/raw/ff44ac5b157d231f464f4d43ce0e05bccb4c1d7b/train.py
     Resources:
       GPU: "1"

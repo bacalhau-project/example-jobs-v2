@@ -6,6 +6,9 @@ tasks:
     Engine:
       type: docker
       params:
-        Image: "ghcr.io/bacalhau-project/examples/stable-diffusion-cpu:0.0.1" 
+        Image: ghcr.io/bacalhau-project/examples/stable-diffusion-cpu:0.0.1
+        Entrypoint:
+          - /bin/bash
         Parameters:
-          - "python demo.py --prompt "First Humans On Mars" --output ../outputs/mars.png"
+          - -c   
+          - python demo.py --prompt "First Humans On Mars" --output ../outputs/mars.png

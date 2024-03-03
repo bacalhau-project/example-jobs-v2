@@ -6,6 +6,9 @@ tasks:
     engine:
       type: docker
       params:
-        Image: jsacex/sparkov-data-generation
+        Image: jsacex/sparkov-data-generation:latest
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c    
           - python3 datagen.py -n 1000 -o ../outputs "01-01-2022" "10-01-2022"

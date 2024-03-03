@@ -13,8 +13,9 @@ tasks:
           - -c
           - python3 /inputs/hello-world.py
     InputSources:
-    - Target: /inputs
-      Source:
-        Type: url
-        Params:
-          Path: https://raw.githubusercontent.com/bacalhau-project/examples/151eebe895151edd83468e3d8b546612bf96cd05/workload-onboarding/trivial-python/hello-world.py
+      - Target: /inputs
+        Source:
+          Type: urlDownload
+          Params:
+            URL: https://raw.githubusercontent.com/bacalhau-project/examples/151eebe895151edd83468e3d8b546612bf96cd05/workload-onboarding/trivial-python/hello-world.py
+            Path: /inputs/hello-world.py

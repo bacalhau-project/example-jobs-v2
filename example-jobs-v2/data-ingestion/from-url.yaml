@@ -10,6 +10,6 @@ tasks:
         - Source:
     InputSources:
     - Source:
-      Type: url
+      Type: urlDownload
         Params:
-          Path: https://raw.githubusercontent.com/filecoin-project/bacalhau/main/README.md
+          URL: https://raw.githubusercontent.com/filecoin-project/bacalhau/main/README.md

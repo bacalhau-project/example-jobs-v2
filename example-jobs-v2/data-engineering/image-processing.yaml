@@ -13,8 +13,10 @@ tasks:
           - -c
           - magick mogrify -resize 100x100 -quality 100 -path /outputs '/input_images/*.jpg'
     InputSources:
-    - Source:
-        Type: "ipfs"
-        Params:
-          CID: "QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72 "
     - Target: "/input_images"
+      Source:
+        Type: "s3"
+        Params:
+          Bucket: "landsat-image-processing"
+          Key: "*"
+          Region: "us-east-1"
