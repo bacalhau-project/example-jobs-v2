@@ -7,11 +7,16 @@ tasks:
       type: docker
       params:
         Image: "ghcr.io/bacalhau-project/examples/r-prophet:0.0.2" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c
           - Rscript Saturating-Forecasts.R "/example_wp_log_R.csv" "/outputs/output0.pdf" "/outputs/output1.pdf"
     InputSources:
       - Target: "/example_wp_log_R.csv"
         Source:
-          Type: "ipfs"
+          Type: "s3"
           Params:
-            CID: "QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt"
+            Bucket: "r-custom-docker-prophet"
+            Key: "*"
+            Region: "us-east-1"

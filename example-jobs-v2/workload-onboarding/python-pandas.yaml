@@ -14,8 +14,10 @@ tasks:
           - -c
           - python read_csv.py
     InputSources:
-      - Source:
-          Type: "ipfs"
-          Params:
-            CID: "QmfKJT13h5k1b23ja3ZCVg5nFL9oKz2bVXc8oXgtwiwhjz"
       - Target: "/files"
+        Source:
+          Type: "s3"
+          Params:
+            Bucket: "bacallhau-python-pandas"
+            Key: "*"
+            Region: "us-east-1"
