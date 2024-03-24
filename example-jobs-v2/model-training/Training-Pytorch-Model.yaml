@@ -7,18 +7,21 @@ tasks:
       type: docker
       params:
         Image: "pytorch/pytorch" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c
           - python ../inputs/main.py --save-model
     InputSources:
       - Source:
           Type: "ipfs"
           Params:
             CID: "QmdeQjz1HQQdT9wT2NHX86Le9X6X6ySGxp8dfRUKPtgziw"
-        InputSources:
-        - Target: /data
-      Source:
-        Type: urlDownload
-        Params:
-          URL: https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py
+        Target: /data
+      - Source:
+          Type: urlDownload
+          Params:
+            URL: https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py
+        Target: /inputs  
     Resources:
       GPU: "1"

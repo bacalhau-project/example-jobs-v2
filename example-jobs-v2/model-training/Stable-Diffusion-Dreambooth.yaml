@@ -9,11 +9,16 @@ tasks:
         Image: "jsacex/dreambooth:full" 
         Parameters:
           - bash finetune.sh /inputs /outputs "a photo of sbf man" "a photo of man" 3000 "/man" "/model"
+    Publisher:
+      Type: ipfs
+    ResultPaths:
+      - Name: outputs
+        Path: /outputs
     InputSources:
       - Source:
           Type: "ipfs"
           Params:
             CID: "QmRKnvqvpFzLjEoeeNNGHtc7H8fCn9TvNWHFnbBHkK8Mhy"
-        - Target: "/data"
+        Target: "/data"
     Resources:
       GPU: "1"

@@ -7,7 +7,15 @@ tasks:
       type: docker
       params:
         Image: "jsacex/stylegan3" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
+          - -c
           - python gen_images.py --outdir=../outputs --trunc=1 --seeds=2 --network=stylegan3-r-afhqv2-512x512.pkl
+    Publisher:
+      Type: ipfs
+    ResultPaths:
+      - Name: outputs
+        Path: /outputs
     Resources:
       GPU: "1"

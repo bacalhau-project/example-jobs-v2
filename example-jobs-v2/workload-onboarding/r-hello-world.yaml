@@ -17,5 +17,5 @@ tasks:
         Source:
           Type: urlDownload
           Params:
-            URL: https://raw.githubusercontent.com/bacalhau-project/examples/scripts/scripts/hello.R
+            URL: https://raw.githubusercontent.com/bacalhau-project/examples/main/scripts/hello.R
             Path: /hello.R

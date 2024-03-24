@@ -14,14 +14,15 @@ tasks:
           - -c
           - python train.py
     InputSources:
-      - Target: /inputs
       - Source:
-        Type: urlDownload
-        Params:
-          URL: https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+          Type: urlDownload
+          Params:
+            URL: https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+        Target: /inputs
       - Source:
-        Type: urlDownload
-        Params:
-          URL: https://gist.githubusercontent.com/js-ts/e7d32c7d19ffde7811c683d4fcb1a219/raw/ff44ac5b157d231f464f4d43ce0e05bccb4c1d7b/train.py
+          Type: urlDownload
+          Params:
+            URL: https://gist.githubusercontent.com/js-ts/e7d32c7d19ffde7811c683d4fcb1a219/raw/ff44ac5b157d231f464f4d43ce0e05bccb4c1d7b/train.py
+        Target: /inputs
     Resources:
       GPU: "1"

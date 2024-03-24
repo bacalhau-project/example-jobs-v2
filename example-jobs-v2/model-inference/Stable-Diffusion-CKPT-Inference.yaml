@@ -7,13 +7,21 @@ tasks:
       type: docker
       params:
         Image: "jsacex/stable-diffusion-ckpt" 
+        Entrypoint:
+          - /bin/bash
         Parameters:
-          - "conda run --no-capture-output -n ldm python scripts/txt2img.py --prompt "a photo of aronchick drinking coffee" --plms --ckpt ../DavidAronchick.ckpt --skip_grid --n_samples 1 --skip_grid --outdir ../outputs"
+          - -c
+          - conda run --no-capture-output -n ldm python scripts/txt2img.py --prompt "a photo of aronchick drinking coffee" --plms --ckpt ../DavidAronchick.ckpt --skip_grid --n_samples 1 --skip_grid --outdir ../outputs
+    Publisher:
+      Type: ipfs
+    ResultPaths:
+      - Name: outputs
+        Path: /outputs
     InputSources:
       - Source:
           Type: "ipfs"
           Params:
             CID: "QmUCJuFZ2v7KvjBGHRP2K1TMPFce3reTkKVGF2BJY5bXdZ"
-      - Target: "/DavidAronchick.ckpt"
+        Target: "/DavidAronchick.ckpt"
     Resources:
       GPU: "1"
